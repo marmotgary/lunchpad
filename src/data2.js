@@ -55,8 +55,7 @@ module.exports = class Data{
 	//filterCategories filter by things like diets.
 	filterRestaurants( day, filterStr = "", filterCategories = null ){
 		if( filterStr !== "" || filterCategories !== null ){
-
-			// const filtered = this.restaurants.slice();
+			// Make a deep copy
 			const filtered = JSON.parse(JSON.stringify(this.restaurants))
 			filtered.forEach( restaurant => {
 				restaurant.foods = restaurant.foods.filter( food => {
