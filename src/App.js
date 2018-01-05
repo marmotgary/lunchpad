@@ -116,6 +116,7 @@ class App extends Component {
     let data = null;
     loadData().then( res => {
         data = new Data( res );
+        console.log(res);
         let restaurants = data.getRestaurants();
         this.setState({data:data, restaurants:restaurants})
     })
@@ -149,7 +150,6 @@ class App extends Component {
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="row filterContainer">
             <form className="form-inline my-2 my-lg-0 mr-2">
               <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" value={this.state.value} onChange={this.filter}></input>
@@ -176,7 +176,6 @@ class App extends Component {
               </label>
               </div>
             </form>
-          </div>
           </div>
         </nav>
         <div className="container-fluid">

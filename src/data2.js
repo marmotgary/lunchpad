@@ -44,6 +44,11 @@ module.exports = class Data{
 					//this.restaurants[ index++ ].push( restaurant );
 			}
 		})
+		this.restaurants.sort( ( a, b ) => {
+			if( a.foods.length === 0 )
+				return 1
+			return 0
+		})
 	}
 
 	//Returns array of all restaurants.
