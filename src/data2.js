@@ -2,15 +2,16 @@ const axios = require("axios");
 
 module.exports = class Data{
 	constructor( data ){
-		this.categories = [ "ylioppilastalo", "amk", "laseri", "indiana-curry", "cafe-bar-g", "lut-buffet", "ravintola-parempi" ];
+		let categories = Object.getOwnPropertyNames( data );
 		this.restaurants = [];
 		//let index = 0;
-		this.categories.forEach( element => {
+		categories.forEach( element => {
 			//Single restaurant from API.
 			let e = data[ element ];
 			if( e.days !== null ){
 				//For supporting many days
-				//this.restaurants.push( [] );
+				//this.restaurants.push( [] )
+				//"Reflection" is used because objects are not in array and keys are unknown;
 				let days = Object.getOwnPropertyNames( e.days );
 
 				let restaurant = null;
@@ -66,11 +67,15 @@ module.exports = class Data{
 					}
 
 					if( filterCategories !== null && fitting !== 0 ){
-						filterCategories.forEach( filter => {
+						for (let i = 0; i < filterCategories.length; i++) {
+							let filter = filterCategories[i];
 							fitting = food.diet.toLowerCase().includes( filter.toLowerCase()) ? 1 : 0;
-							if( fitting === 0 )
-								return;
-						})
+							console.log(food.name);
+							if( fitting === 0 ){
+								console.log(food.name);
+								break;
+							}
+						}
 					}
 					return fitting;
 				})

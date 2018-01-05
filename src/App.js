@@ -39,7 +39,7 @@ const Restaurant = (props) => {
       foods = <div>Ei ruokaa</div>
     }
     return (
-      <div className="card restaurant col-md-6 col-lg-4">
+      <div className="card mx-2 my-2 restaurant col-lg-5 col-xl-3">
         <h2 className="card-title">{restaurant.name}</h2>
         {foods}
       </div>
@@ -54,7 +54,7 @@ const RestaurantData = (props) => {
     const restaurantList = props.restaurants.map((restaurant, index) =>
       <Restaurant key={index} restaurant={restaurant}/>
     );
-    return <div className="row">{restaurantList}</div>
+    return <div className="row justify-content-center">{restaurantList}</div>
 }
 
 const Navbar = (props) => {
