@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import restaurantJson from './restaurants.json'
+import Cookies from 'universal-cookie';
 const axios = require("axios");
-const Data = require( "./data2.js" );
-
-
+const Data = require( "./data.js" );
 
 // const data = new Data();
 // data.getRestaurants(); //lista
@@ -31,8 +28,8 @@ const Restaurant = (props) => {
     if (foods !== undefined && foods.length > 0){
       foods  = foods.map((food, index) =>
         <div className="text-left mt-2" key={index}>
-          <div className="font-weight-bold">{food.category}</div>
-          <div className="">{food.name} ({food.diet})</div>
+          <div className="category">{food.category}</div>
+          <div className="food">{food.name} ({food.diet})</div>
         </div>
       );
     } else {
@@ -54,61 +51,21 @@ const RestaurantData = (props) => {
     const restaurantList = props.restaurants.map((restaurant, index) =>
       <Restaurant key={index} restaurant={restaurant}/>
     );
-    return <div className="row justify-content-center">{restaurantList}</div>
-}
-
-const Navbar = (props) => {
-  return <nav className="navbar navbar-expand-md navbar-light bg-light">
-      <a className="navbar-brand" href="#">LunchPad</a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <form className="form-inline my-2 my-lg-0 mr-2">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <form className="form-inline my-2 my-lg-0">
-
-
-
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="dairy-free" name="dairy-free" value="true"> M</input>
-            </label>
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="lactose-free" name="lactose-free" value="true"> L</input>
-            </label>
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="low-lactose" name="low-lactose" value="true"> VL</input>
-            </label>
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="gluten-free" name="gluten-free" value="true"> G</input>
-            </label>
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="vegan" name="vegan" value="true"> V</input>
-            </label>
-            <label className="btn btn-primary">
-              <input type="checkbox" autocomplete="off" id="recommended" name="recommended" value="true"> +</input>
-            </label>
-          </div>
-
-
-
-
-        </form>
-      </div>
-    </nav>
+    return <div className="row justify-content-center" id="google_translate_element">{restaurantList}</div>
 }
 
 class App extends Component {
   constructor(props) {
+    let cookies = new Cookies();
+    let filters = cookies.get("filters");
+    filters = filters === undefined ? [] : filters;
     super(props)
     this.state = {data: null,
                   restaurants: null,
                   search: "",
-                  filters: []}
-    this.filter = this.filter.bind(this)
+                  filters: filters,
+                  cookies: cookies}
+    this.filter = this.filter.bind(this);
   }
 
   componentDidMount(){
@@ -116,7 +73,6 @@ class App extends Component {
     let data = null;
     loadData().then( res => {
         data = new Data( res );
-        console.log(res);
         let restaurants = data.getRestaurants();
         this.setState({data:data, restaurants:restaurants})
     })
@@ -125,7 +81,7 @@ class App extends Component {
     const val = evt.target.value;
     let filters = this.state.filters;
     let search = this.state.search;
-    if (evt.target.type == "checkbox"){
+    if (evt.target.type === "checkbox"){
       const index = filters.indexOf(val);
       if (index > -1){
         filters.splice(index, 1)
@@ -134,10 +90,11 @@ class App extends Component {
       }
     }
 
-    if (evt.target.type == "text"){
+    if (evt.target.type === "text"){
       search = val;
     }
     console.log(search, filters);
+    this.state.cookies.set('filters', filters, {path:'/'});
     const restaurants = this.state.data.filterRestaurants( 0, search, filters);
     this.setState({filters:filters, search:search, restaurants:restaurants});
   }
@@ -146,7 +103,7 @@ class App extends Component {
     return (
       <div className="App">
         <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <a className="navbar-brand text-primary" href="#">LunchPad</a>
+          <a className="navbar-brand text-primary" href="">LunchPad</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

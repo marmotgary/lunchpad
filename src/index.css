@@ -7,3 +7,18 @@ body {
 .filterContainer {
   margin: auto;
 }
+
+h2 {
+  font-family: Segoe UI light;
+  font-weight: 400;
+}
+
+.category {
+  font-family: Segoe UI light;
+  font-weight: 600;
+}
+
+.food {
+  font-family: Segoe UI light;
+  font-weight: 400;
+}

@@ -1,4 +1,3 @@
-const axios = require("axios");
 
 module.exports = class Data{
 	constructor( data ){
@@ -30,6 +29,7 @@ module.exports = class Data{
 					day.foods.forEach( food => {
 						let f = {};
 						f.name = food.title_fi;
+						console.log(food.title_fi);
 						f.description = food.description;
 						f.diet = food.diet;
 						f.category = food.category;
@@ -75,9 +75,7 @@ module.exports = class Data{
 						for (let i = 0; i < filterCategories.length; i++) {
 							let filter = filterCategories[i];
 							fitting = food.diet.toLowerCase().includes( filter.toLowerCase()) ? 1 : 0;
-							console.log(food.name);
 							if( fitting === 0 ){
-								console.log(food.name);
 								break;
 							}
 						}
@@ -94,5 +92,11 @@ module.exports = class Data{
 			return filtered;
 		}
 		return this.restaurants;
+	}
+
+	translateMenu( menu, lang = 'en' ){
+		console.log(menu);
+
+		return;
 	}
 }
