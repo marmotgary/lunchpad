@@ -34,7 +34,7 @@ const Restaurant = (props) => {
       }).map((food, index) =>
         <div className="text-left mt-2" key={index}>
           <div className="category">{food.category}</div>
-          <div className="food">{food.name} ({food.diet})</div>
+          <div className="food">{food.name} {(food.diet !== "" ? (food.diet) : '')}</div>
         </div>
       );
     } else {
@@ -79,7 +79,8 @@ class App extends Component {
     loadData().then( res => {
         data = new Data( res );
         let restaurants = data.getRestaurants();
-        this.setState({data:data, restaurants:restaurants})
+        this.setState({data:data, restaurants:restaurants});
+        console.log(restaurants);
     })
   }
   filter(evt) {

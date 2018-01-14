@@ -29,7 +29,6 @@ module.exports = class Data{
 					day.foods.forEach( food => {
 						let f = {};
 						f.name = food.title_fi;
-						console.log(food.title_fi);
 						f.description = food.description;
 						f.diet = food.diet;
 						f.category = food.category;
