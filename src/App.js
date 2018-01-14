@@ -37,7 +37,7 @@ const Restaurant = (props) => {
     }
     return (
       <div className="card mx-2 my-2 restaurant col-lg-5 col-xl-3">
-        <h2 className="card-title">{restaurant.name}</h2>
+        <h2 className="card-title restaurant"><a target="_blank" href={restaurant.link}>{restaurant.name}</a></h2>
         {foods}
       </div>
     )

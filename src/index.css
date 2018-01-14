@@ -22,3 +22,7 @@ h2 {
   font-family: Segoe UI light;
   font-weight: 400;
 }
+
+.restaurant a:hover {
+  text-decoration: none;
+}
