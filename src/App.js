@@ -81,12 +81,21 @@ class App extends Component {
         let restaurants = data.getRestaurants();
         this.setState({data:data, restaurants:restaurants});
         console.log(restaurants);
+        this.filter();
     })
   }
-  filter(evt) {
-    const val = evt.target.value;
+  filter(evt=null) {
     let filters = this.state.filters;
     let search = this.state.search;
+
+    if (evt == null){
+      // Filters loaded from cookies
+      const restaurants = this.state.data.filterRestaurants( 0, search, filters);
+      this.setState({filters:filters, search:search, restaurants:restaurants});
+      return;
+    }
+    // Update filters or search
+    const val = evt.target.value;
     if (evt.target.type === "checkbox"){
       const index = filters.indexOf(val);
       if (index > -1){
