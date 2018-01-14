@@ -26,7 +26,12 @@ const Restaurant = (props) => {
     }
     let foods = restaurant.foods;
     if (foods !== undefined && foods.length > 0){
-      foods  = foods.map((food, index) =>
+      foods =foods.filter(function(food) {
+        if (food.name == "") {
+          return false;
+        }
+        return true;
+      }).map((food, index) =>
         <div className="text-left mt-2" key={index}>
           <div className="category">{food.category}</div>
           <div className="food">{food.name} ({food.diet})</div>
