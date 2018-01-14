@@ -4,12 +4,6 @@ import Cookies from 'universal-cookie';
 const axios = require("axios");
 const Data = require( "./data.js" );
 
-// const data = new Data();
-// data.getRestaurants(); //lista
-// data.filterByString( "str" );
-// data.filterByCategory( ["G", "+", "f" ]);
-// data.filterByStringAndCategory( "str", []);
-
 function loadData(){
     return axios.get( "https://skinfo.dy.fi/api/restaurants.json" )
     .then( response => {
