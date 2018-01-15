@@ -1,28 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: 'Dosis', sans-serif;
 }
 
 .filterContainer {
-  margin: auto;
+  /* margin: auto; */
 }
 
 h2 {
-  font-family: Segoe UI light;
+  /* font-family: Segoe UI light; */
   font-weight: 400;
 }
 
 .category {
-  font-family: Segoe UI light;
+  /* font-family: Segoe UI light; */
   font-weight: 600;
 }
 
 .food {
-  font-family: Segoe UI light;
+  /* font-family: Segoe UI light; */
   font-weight: 400;
 }
 
 .restaurant a:hover {
   text-decoration: none;
+}
+
+.sitename {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  color: #2c3e50 !important;
 }

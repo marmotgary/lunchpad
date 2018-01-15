@@ -21,7 +21,7 @@ const Restaurant = (props) => {
     let foods = restaurant.foods;
     if (foods !== undefined && foods.length > 0){
       foods =foods.filter(function(food) {
-        if (food.name == "") {
+        if (food.name === "") {
           return false;
         }
         return true;
@@ -50,7 +50,7 @@ const RestaurantData = (props) => {
     const restaurantList = props.restaurants.map((restaurant, index) =>
       <Restaurant key={index} restaurant={restaurant}/>
     );
-    return <div className="row justify-content-center" id="google_translate_element">{restaurantList}</div>
+    return <div className="row justify-content-center my-4" id="google_translate_element">{restaurantList}</div>
 }
 
 class App extends Component {
@@ -111,35 +111,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="navbar navbar-expand-md navbar-light bg-light">
-          <a className="navbar-brand text-primary" href="">LunchPad</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+        <nav className="navbar navbar-light bg-light">
+          <div className="navbar-brand sitename mr-4">LunchPad</div>
           <div className="row filterContainer">
-            <form className="form-inline my-2 my-lg-0 mr-2">
+            <form className="form-inline my-2 my-lg-0 mx-2">
               <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" value={this.state.value} onChange={this.filter}></input>
             </form>
-            <form className="form-inline my-2 my-lg-0">
+            <form className="form-inline my-2 my-lg-0 mx-2">
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('m') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="dairy-free" name="dairy-free" value="m" onChange={this.filter}></input> M
-              </label>
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('l') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="lactose-free" name="lactose-free" value="l" onChange={this.filter}></input> L
-              </label>
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('vl') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="low-lactose" name="low-lactose" value="vl" onChange={this.filter}></input> VL
-              </label>
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('g') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="gluten-free" name="gluten-free" value="g" onChange={this.filter}></input> G
-              </label>
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('v') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="vegan" name="vegan" value="v" onChange={this.filter}></input> V
-              </label>
-              <label className={"btn btn-primary " + (this.state.filters.indexOf('+') > -1 ? 'active' : '')}>
-                <input type="checkbox" id="recommended" name="recommended" value="+" onChange={this.filter}></input> +
-              </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('m') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="dairy-free" name="dairy-free" value="m" onChange={this.filter}></input>M
+                </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('l') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="lactose-free" name="lactose-free" value="l" onChange={this.filter}></input>L
+                </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('vl') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="low-lactose" name="low-lactose" value="vl" onChange={this.filter}></input>VL
+                </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('g') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="gluten-free" name="gluten-free" value="g" onChange={this.filter}></input>G
+                </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('v') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="vegan" name="vegan" value="v" onChange={this.filter}></input>V
+                </label>
+                <label className={"btn btn-primary " + (this.state.filters.indexOf('+') > -1 ? 'active' : '')}>
+                  <input type="checkbox" id="recommended" name="recommended" value="+" onChange={this.filter}></input>+
+                </label>
               </div>
             </form>
           </div>
